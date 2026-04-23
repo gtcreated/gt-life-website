@@ -35,21 +35,59 @@ body {
     border-bottom: 1px solid rgba(229, 209, 123, 0.3);
 }
 
+/* --- UPGRADED 3-ZONE NAVIGATION --- */
 .nav-content {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative; /* Required to perfectly center the logo */
+    width: 100%;
 }
 
-.logo {
-    font-size: 1.25rem;
-    font-weight: 700;
+.nav-left, .nav-right {
+    display: flex;
+    align-items: center;
+    flex: 1; /* Ensures the left and right sides take up equal space */
+}
+
+.nav-right {
+    justify-content: flex-end;
+}
+
+/* The New Centered Logo */
+.nav-center {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+}
+
+.nav-center a {
     text-decoration: none;
     color: var(--deep-espresso);
+    transition: color 0.3s ease;
 }
 
+.nav-center a:hover {
+    color: var(--muted-mustard);
+}
+
+/* Left-side Text (e.g., the Back button) */
+.logo {
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--deep-espresso);
+    transition: color 0.3s ease;
+}
+
+.logo:hover {
+    color: var(--muted-mustard);
+}
 .nav-links a {
     text-decoration: none;
     color: var(--deep-espresso);

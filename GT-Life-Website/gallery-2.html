@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery 2 - GT Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="index.html" class="logo">← Back Home</a>
+            <div class="theme-controls">
+                <button id="theme-toggle" class="theme-btn">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="gallery-section" style="padding-top: 10rem;">
+            <h2 class="section-title">Gallery 2</h2>
+            <p style="text-align: center; margin-bottom: 3rem;">Exploring new perspectives.</p>
+            
+            <div class="photo-grid">
+                <div class="photo-item card-reveal"><img src="images/g2-1.jpg" alt="Photo 1"></div>
+                <div class="photo-item card-reveal"><img src="images/g2-2.jpg" alt="Photo 2"></div>
+                <div class="photo-item card-reveal"><img src="images/g2-3.jpg" alt="Photo 3"></div>
+                <div class="photo-item card-reveal"><img src="images/g2-4.jpg" alt="Photo 4"></div>
+            </div>
+        </section>
+    </main>
+
+    <div id="photoModal" class="lightbox-modal">
+        <span class="close-lightbox">&times;</span>
+        <a class="prev-lightbox" id="prevPhoto">&#10094;</a>
+        <a class="next-lightbox" id="nextPhoto">&#10095;</a>
+        <img class="lightbox-content" id="lightboxImg">
+        <div class="lightbox-caption">
+            <a href="#" id="smart-comment-btn">Drop a comment on this shot 💬</a>
+        </div>
+    </div>
+
+    <section id="comments" class="gallery-section moderation-section" style="padding-top: 0; padding-bottom: 5rem;">
+        <div class="comment-widget-container">
+            <iframe data-tally-src="https://tally.so/embed/81PDaY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="GT Life Comments"></iframe>
+            <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+        </div>
+    </section>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

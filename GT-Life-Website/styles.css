@@ -1,0 +1,536 @@
+/* Golden Hour Elite Color Variables */
+:root {
+    --warm-cream: #FEF4D5;
+    --soft-gold: #F1E49A;
+    --deep-espresso: #2C1810;
+    --muted-mustard: #E6D17B;
+    --glass-bg: rgba(254, 244, 213, 0.7);
+}
+
+/* Base Reset & Apple-style Typography */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--warm-cream);
+    color: var(--deep-espresso);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Glassmorphism Navigation */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    z-index: 1000;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(229, 209, 123, 0.3);
+}
+
+.nav-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.25rem;
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--deep-espresso);
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: var(--deep-espresso);
+    margin-left: 2rem;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--muted-mustard);
+}
+
+/* Hero Section & Invisible Vimeo Embed */
+.hero {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+}
+
+.video-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.video-container iframe {
+    width: 100vw;
+    height: 56.25vw; /* Given a 16:9 aspect ratio, 9/16*100 = 56.25 */
+    min-height: 100vh;
+    min-width: 177.77vh; /* Given a 16:9 aspect ratio, 16/9*100 = 177.77 */
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hero-content {
+    z-index: 1;
+    color: var(--warm-cream);
+    background: rgba(44, 24, 16, 0.4);
+    padding: 3rem;
+    border-radius: 20px;
+    backdrop-filter: blur(5px);
+}
+
+.hero-content h1 {
+    font-size: 4rem;
+    letter-spacing: -0.05em;
+    margin-bottom: 1rem;
+}
+
+/* Gallery Sections */
+.gallery-section {
+    padding: 8rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.alt-bg {
+    background-color: var(--soft-gold);
+    max-width: 100%;
+    padding: 8rem 10%;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    letter-spacing: -0.03em;
+}
+
+/* Responsive Grid for Media */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+/* Category Tiles (e.g., Side Quests, Travel Vlogs on the main page) */
+.grid-item {
+    background: var(--muted-mustard);
+    height: 300px;
+    border-radius: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: var(--deep-espresso);
+    box-shadow: 0 10px 30px rgba(44, 24, 16, 0.08);
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    cursor: pointer;
+}
+
+.grid-item:hover {
+    transform: scale(1.03);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 3rem;
+    background: var(--deep-espresso);
+    color: var(--warm-cream);
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 768px) {
+   .hero-content h1 { font-size: 2.5rem; }
+   .nav-links { display: none; }
+   .gallery-section { padding: 4rem 1.5rem; }
+}
+
+/* --- NEW ADDITIONS FOR SMART PLAYER & THUMBNAILS --- */
+
+/* Clickable Links */
+a.tile-link {
+    text-decoration: none;
+    display: block;
+}
+
+/* Video Player Layout */
+.player-section {
+    padding: 8rem 2rem 4rem 2rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+    height: 0;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(44, 24, 16, 0.2);
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.video-info {
+    margin-top: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid rgba(229, 209, 123, 0.3);
+}
+
+.video-info h1 {
+    font-size: 2.5rem;
+    letter-spacing: -0.03em;
+    margin-bottom: 1rem;
+}
+
+/* Video Cards for Thumbnail Grids */
+.video-card {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.thumbnail-container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16/9; /* Keeps all tiles perfectly uniform */
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(44, 24, 16, 0.08);
+    background: var(--deep-espresso); 
+}
+
+.thumbnail-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Prevents stretching or squishing */
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hover-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(44, 24, 16, 0.5);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.hover-title {
+    color: var(--warm-cream);
+    font-weight: 700;
+    font-size: 1.25rem;
+    text-align: center;
+    padding: 1rem;
+    transform: translateY(15px);
+    transition: transform 0.4s ease;
+}
+
+.card-title-below {
+    color: var(--deep-espresso);
+    font-weight: 600;
+    font-size: 1.1rem;
+    text-align: center;
+    transition: opacity 0.3s ease;
+}
+
+/* The Magic Hover Effects */
+.video-card:hover .thumbnail-container img {
+    transform: scale(1.05);
+}
+.video-card:hover .hover-overlay {
+    opacity: 1;
+}
+.video-card:hover .hover-title {
+    transform: translateY(0);
+}
+.video-card:hover .card-title-below {
+    opacity: 0;
+}
+/* --- PREMIUM MASONRY PHOTO GALLERY STYLES --- */
+.photo-grid {
+    column-count: 3; /* Creates 3 columns on desktop */
+    column-gap: 1.5rem;
+    padding-top: 2rem;
+}
+
+.photo-item {
+    break-inside: avoid; /* Prevents a photo from splitting in half */
+    margin-bottom: 1.5rem; /* Space between photos stacked vertically */
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(44, 24, 16, 0.1);
+    transition: transform 0.4s ease;
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+}
+
+.photo-item img {
+    width: 100%;
+    height: auto; /* This is the magic line that respects your original aspect ratios */
+    display: block;
+    transition: transform 0.6s ease;
+}
+
+.photo-item:hover img {
+    transform: scale(1.05);
+}
+
+/* Make it look perfect on tablets and phones */
+@media (max-width: 900px) {
+    .photo-grid { column-count: 2; }
+}
+@media (max-width: 600px) {
+    .photo-grid { column-count: 1; }
+}
+/* --- FULL SCREEN LIGHTBOX STYLES --- */
+.lightbox-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    z-index: 2000; /* Sits on top of everything */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(44, 24, 16, 0.95);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.lightbox-content {
+    max-width: 90%;
+    max-height: 80vh;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    object-fit: contain; /* Ensures the whole photo fits on screen */
+    transform: scale(0.95);
+    transition: transform 0.3s ease;
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    color: var(--warm-cream);
+    font-size: 40px;
+    font-weight: 300;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.close-lightbox:hover {
+    color: var(--muted-mustard);
+}
+
+.lightbox-caption {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.lightbox-caption a {
+    color: var(--deep-espresso);
+    background-color: var(--muted-mustard);
+    padding: 10px 20px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease;
+    display: inline-block;
+}
+
+.lightbox-caption a:hover {
+    background-color: var(--warm-cream);
+}
+/* --- NEW NAVIGATION STYLES --- */
+
+/* Lightbox Arrows */
+.prev-lightbox, .next-lightbox {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 20px;
+    margin-top: -50px;
+    color: rgba(254, 244, 213, 0.5); /* Faded warm cream */
+    font-weight: bold;
+    font-size: 40px;
+    transition: 0.3s ease;
+    border-radius: 8px;
+    user-select: none;
+    -webkit-user-select: none;
+    text-decoration: none;
+    z-index: 2001;
+}
+
+.prev-lightbox { left: 20px; }
+.next-lightbox { right: 20px; }
+
+.prev-lightbox:hover, .next-lightbox:hover {
+    color: var(--warm-cream);
+    background-color: rgba(44, 24, 16, 0.6);
+}
+
+/* Video Player Next/Prev Buttons */
+.player-nav-container {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(229, 209, 123, 0.3);
+}
+
+.nav-btn {
+    padding: 12px 24px;
+    background: var(--muted-mustard);
+    color: var(--deep-espresso);
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.nav-btn:hover {
+    background: var(--soft-gold);
+    transform: translateY(-2px);
+}
+
+/* Push Next button to the right if there is no Previous button */
+.nav-btn.next-only {
+    margin-left: auto;
+}
+/* --- THEME TOGGLE & NIGHT LIGHT MODE --- */
+
+/* Night Light Theme Variables (Butterscotch & Beige Vibes) */
+body.night-light-theme {
+    --warm-cream: #EADCB6; /* Deeper, warmer beige */
+    --soft-gold: #E1C694; /* Brings the alternating backgrounds closer in hue to blend them */
+    --deep-espresso: #4A3320; /* Softer, slightly lighter brown so text isn't as harsh */
+    --muted-mustard: #CEAB71; /* Rich caramel/butterscotch */
+    --glass-bg: rgba(234, 220, 182, 0.85); /* Slightly more opaque warm glass */
+}
+
+/* Toggle Button in Navbar */
+.theme-controls {
+    position: relative;
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+}
+
+.theme-btn {
+    background: none;
+    border: 2px solid var(--deep-espresso);
+    color: var(--deep-espresso);
+    font-size: 1.1rem;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.theme-btn:hover {
+    background: var(--deep-espresso);
+    color: var(--warm-cream);
+}
+
+/* Tooltip Styles */
+.theme-tooltip {
+    position: absolute;
+    top: 50px;
+    right: -10px;
+    background: var(--deep-espresso);
+    color: var(--warm-cream);
+    padding: 10px 15px;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    white-space: nowrap;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none; /* Invisible to mouse at first */
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.theme-tooltip.show-tooltip {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+}
+
+/* The little triangle pointing up to the button */
+.theme-tooltip::after {
+    content: '';
+    position: absolute;
+    top: -6px;
+    right: 22px;
+    border-width: 0 6px 6px 6px;
+    border-style: solid;
+    border-color: transparent transparent var(--deep-espresso) transparent;
+}
+
+.close-tooltip {
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+.close-tooltip:hover {
+    opacity: 1;
+}
+
+/* Mobile Fix for Theme Button */
+@media (max-width: 768px) {
+    .theme-controls { margin-left: auto; }
+}

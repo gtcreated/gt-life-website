@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Now Playing - GT Life</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-content">
+            <a href="javascript:history.back()" class="logo">← Back</a>
+            <div class="theme-controls">
+                <button id="theme-toggle" class="theme-btn">🌙</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="player-section">
+            <div class="video-wrapper" id="video-container">
+                <iframe id="youtube-embed" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+            
+            <div class="video-info">
+                <h1 id="dynamic-title">Loading Video...</h1>
+                <p>Welcome to this episode. For a full description and to leave a public comment, please view this video on YouTube.</p>
+                <br>
+                <a id="youtube-link" href="#" target="_blank" style="display: inline-block; padding: 10px 20px; background: var(--deep-espresso); color: var(--warm-cream); text-decoration: none; border-radius: 5px;">View on YouTube</a>
+            </div>
+        </section>
+
+        <section id="comments" class="gallery-section moderation-section" style="padding-top: 0; padding-bottom: 5rem;">
+            <h2 class="section-title" style="font-size: 1.5rem;">Leave Private Feedback</h2>
+            <div class="comment-widget-container">
+                <iframe data-tally-src="https://tally.so/embed/81PDaY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1" loading="lazy" width="100%" height="400" frameborder="0" marginheight="0" marginwidth="0" title="GT Life Comments"></iframe>
+                <script>var d=document,w="https://tally.so/widgets/embed.js",v=function(){"undefined"!=typeof Tally?Tally.loadEmbeds():d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function(e){e.src=e.dataset.tallySrc}))};if("undefined"!=typeof Tally)v();else if(d.querySelector('script[src="'+w+'"]')==null){var s=d.createElement("script");s.src=w,s.onload=v,s.onerror=v,d.body.appendChild(s);}</script>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const videoId = urlParams.get('v');
+        const videoTitle = urlParams.get('title');
+        const videoType = urlParams.get('type');
+
+        // 1. Handle YouTube Embed
+        if (videoId) {
+            document.getElementById('youtube-embed').src = "https://www.youtube.com/embed/" + videoId;
+            document.getElementById('youtube-link').href = "https://www.youtube.com/watch?v=" + videoId;
+        }
+        
+        // 2. Handle Title & SMART COMMENT TRACKER
+        if (videoTitle) {
+            document.getElementById('dynamic-title').innerText = videoTitle;
+            document.title = videoTitle + " - GT Life";
+            
+            // Inject the video title into the Tally Form hidden field!
+            const tallyIframe = document.querySelector('.comment-widget-container iframe');
+            if (tallyIframe) {
+                const baseUrl = "https://tally.so/embed/81PDaY?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1";
+                tallyIframe.src = baseUrl + "&item=" + encodeURIComponent("Video: " + videoTitle);
+            }
+        }
+
+        // 3. Handle Aspect Ratio for Shorts vs Long
+        const container = document.getElementById('video-container');
+        if (videoType === 'short') {
+            container.style.paddingBottom = "0";
+            container.style.height = "75vh"; 
+            container.style.width = "calc(75vh * (9/16))"; 
+            container.style.margin = "0 auto"; 
+        }
+
+        // 4. AUTOMATIC NEXT/PREV NAVIGATION
+        const infoDiv = document.querySelector('.video-info');
+        const navContainer = document.createElement('div');
+        navContainer.className = 'player-nav-container';
+        infoDiv.appendChild(navContainer);
+
+        const playlist = JSON.parse(sessionStorage.getItem('gtPlaylist'));
+        let currentIndex = parseInt(sessionStorage.getItem('gtCurrentIndex'));
+
+        if (playlist && !isNaN(currentIndex)) {
+            if (currentIndex > 0) {
+                const prevBtn = document.createElement('a');
+                prevBtn.href = playlist[currentIndex - 1];
+                prevBtn.className = 'nav-btn';
+                prevBtn.innerHTML = '&#10094; Previous Episode';
+                navContainer.appendChild(prevBtn);
+            }
+            if (currentIndex < playlist.length - 1) {
+                const nextBtn = document.createElement('a');
+                nextBtn.href = playlist[currentIndex + 1];
+                nextBtn.className = 'nav-btn';
+                if (currentIndex === 0) nextBtn.classList.add('next-only'); 
+                nextBtn.innerHTML = 'Next Episode &#10095;';
+                navContainer.appendChild(nextBtn);
+            }
+        }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>

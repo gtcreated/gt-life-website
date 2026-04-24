@@ -15,6 +15,15 @@
             .then(() => console.log("Service Worker Registered"));
         }
     </script>
+    <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+<script>
+  window.OneSignalDeferred = window.OneSignalDeferred || [];
+  OneSignalDeferred.push(async function(OneSignal) {
+    await OneSignal.init({
+      appId: "a4a03b6b-7de4-4218-9618-401cd611a235",
+    });
+  });
+</script>
 </head>
 <body>
 

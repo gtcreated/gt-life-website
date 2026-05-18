@@ -204,3 +204,19 @@ if (tooltip) {
         }, 10000);
     }
 }
+// --- SMART BACK BUTTON LOGIC (Scroll Memory) ---
+const allBackButtons = document.querySelectorAll('.logo');
+
+allBackButtons.forEach(btn => {
+    // Look for any logo button that contains the word "Back"
+    if (btn.innerText.includes('Back')) {
+        btn.addEventListener('click', (e) => {
+            // Check if they came from another page on your website
+            if (document.referrer && document.referrer.includes(window.location.hostname)) {
+                e.preventDefault(); // Stop the normal "fresh page load"
+                window.history.back(); // Trigger the native memory swipe
+            }
+            // If they came from a direct link (like a notification), do nothing and let the normal HTML link work!
+        });
+    }
+});
